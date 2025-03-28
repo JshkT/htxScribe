@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "5000:5000"
+    volumes:
+      - transcription_data:/app/temp
+      - transcription_db:/app/data
+    environment:
+      - FLASK_APP=app.app
+      - FLASK_ENV=production
+    networks:
+      - app-network
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    environment:
+      - REACT_APP_API_URL=http://localhost:5000
+    depends_on:
+      - backend
+    networks:
+      - app-network
+    restart: unless-stopped
+
+volumes:
+  transcription_data:
+  transcription_db:
+
+networks:
+  app-network:
+    driver: bridge 

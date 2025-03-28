@@ -1,0 +1,19 @@
+name: htx-transcription
+channels:
+  - pytorch
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - pytorch
+  - torchaudio
+  - numpy
+  - pip:
+    - flask==3.0.2
+    - flask-cors==4.0.0
+    - gunicorn==21.2.0
+    - transformers==4.37.2
+    - python-dotenv==1.0.1
+    - pytest==8.0.2
+    - pytest-cov==4.1.0 
